@@ -1,0 +1,83 @@
+/* =========================
+   Login
+========================= */
+
+.login-page {
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(8, 20, 35, 0.88), rgba(8, 20, 35, 0.88)),
+        repeating-linear-gradient(
+            45deg,
+            #111827 0,
+            #111827 10px,
+            #162033 10px,
+            #162033 20px
+        );
+}
+
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .35);
+    border-top: 6px solid #f59e0b;
+}
+
+.login-brand {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.brand-icon {
+    width: 72px;
+    height: 72px;
+    background: #0b1f3a;
+    color: #f59e0b;
+    border-radius: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.login-brand h4 {
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #0b1f3a;
+}
+
+.login-brand p {
+    color: #6b7280;
+    margin-bottom: 0;
+}
+
+.btn-factory {
+    background: #0b1f3a;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 11px;
+}
+
+.btn-factory:hover {
+    background: #12345c;
+    color: #ffffff;
+}
+
+.login-footer {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 12px;
+    color: #9ca3af;
+}
