@@ -6,8 +6,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_name("FGWHSESSID");
 
     // ตั้ง cookie path ให้ผูกกับโปรเจคนี้
-    // ถ้ารันที่ /FGWarehouseSystem ให้ใช้ path นี้
-    $cookiePath = "/FGWarehouseSystem";
+    // ถ้ารันที่ /CheckSheetSystem ให้ใช้ path นี้
+    $cookiePath = "/CheckSheetSystem";
 
     // ถ้ารัน root ตรง ๆ เช่น http://localhost/ ให้เปลี่ยนเป็น "/"
     // $cookiePath = "/";

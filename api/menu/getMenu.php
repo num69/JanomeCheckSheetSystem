@@ -72,7 +72,7 @@ $menu = array(
         ),
         array(
             "type" => "section",
-            "label" => "System",
+            "label" => "ตั้งค่าระบบ",
             "children" => array(
                 array(
                     "type" => "link",
@@ -81,16 +81,10 @@ $menu = array(
                     "href" => "pages/status/index.php"
                 ),
                 array(
-                    "type" => "submenu",
-                    "label" => "Master Data",
-                    "icon" => "fas fa-cog",
-                    "children" => array(
-                        array(
-                            "type" => "link",
-                            "label" => "Setup Master",
-                            "href" => "pages/master/index.php"
-                        )
-                    )
+                    "type" => "link",
+                    "label" => "จัดการผู้ใช้งาน",
+                    "icon" => "fas fa-users-cog",
+                    "href" => "pages/setting/userManagement.php"
                 )
             )
         )

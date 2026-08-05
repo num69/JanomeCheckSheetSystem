@@ -25,9 +25,9 @@ try {
             ,[USignature]
             ,[Username]
             ,[Password]
-            ,[Ugroup]
+            ,[UGroup]
             ,[UStatus]
-        FROM [Warehouse].[dbo].[WH_user] WHERE 
+        FROM [dbo].[Insp_Users] WHERE 
         [UStatus] = 'Y' AND [Username] = ? AND [Password] = ?";
 
     $row = $db->fetch_one($sql, $params);
@@ -48,7 +48,7 @@ try {
         "image" => $row["UImage"],
         "signature" => $row["USignature"],
         "username" => $row["Username"],
-        "group" => $row["Ugroup"],
+        "group" => $row["UGroup"],
         "status" => $row["UStatus"]
     );
 

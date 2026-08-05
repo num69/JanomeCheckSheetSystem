@@ -6,13 +6,19 @@
 <aside id="appSidebar" class="sidebar bg-dark text-white d-flex flex-column">
 
     <div class="sidebar-brand d-flex align-items-center px-3 py-3">
-        <div class="sidebar-brand-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded mr-2">
-            <i class="fas fa-warehouse"></i>
+       <div class="sidebar-brand-icon p-1 mr-2 d-flex align-items-center justify-content-center rounded mr-2 bg-warning">
+            <img src="<?= $baseUrl ?>assets/images/sewing-machine.png"
+                alt="JANOME Logo" 
+                class="logo-icon flex-shrink-0">
         </div>
 
         <div class="sidebar-brand-text">
-            <strong class="d-block">FG Warehouse</strong>
-            <small class="text-light">Factory System</small>
+            <div class="d-flex flex-column ms-2 align-items-start">
+                <img src="<?= $baseUrl ?>assets/images/logo-janome.png"
+                alt="JANOME Logo" 
+                class="logo-main mb-1">
+                <small class="text-light janome-subtitle">Check Sheet System</small>
+            </div>
         </div>
     </div>
 

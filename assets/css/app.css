@@ -2,6 +2,56 @@
     box-sizing: border-box;
 }
 
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap'); */
+
+/* ปรับขนาดรูปโลโก้ด้านหน้า */
+.janome-logo-img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* แต่งข้อความ JANOME */
+.janome-title {
+    width: 11rem;
+    color: var(--theme-warning);
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 1.5px; /* ระยะห่างตัวอักษรแบบโลโก้ */
+    line-height: 1.1;
+}
+
+/* แต่งข้อความ Check Sheet System */
+.janome-subtitle {
+    font-size: 0.60rem;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+}
+
+.logo-icon{
+    object-fit:contain;  
+    max-width:100%;
+    max-height:100%;
+    height:auto;
+    width:auto;
+}
+
+.logo-main{
+    height:13px;
+    object-fit:contain;
+}
+.logo-main.dark,
+.logo-icon.dark{
+    filter:
+        brightness(0)      /* ทำภาพเป็นดำล้วนก่อน */
+        invert(14%)        /* พลิกเป็นสีขาวระดับหนึ่ง */
+        sepia(42%)         /* ใส่โทนสีน้ำตาล */
+        saturate(700%)     /* เพิ่มความอิ่มสี */
+        hue-rotate(177deg) /* หมุนโทนไปทางน้ำเงินเข้ม */
+        brightness(92%)    /* ปรับความสว่างลงเล็กน้อย */
+        contrast(90%);     /* ลดคอนทราสต์ให้สีทึบขึ้น */
+}
+
 .page-animated{
     opacity: 0;
     transform: translateY(12px);
@@ -19,7 +69,6 @@ body.page-hidden-overflow {
 }
 
 body {
-    font-family: Arial, "Tahoma", sans-serif;
     background: #eef2f6;
     color: #1f2933;
     min-height: 100vh;
@@ -65,6 +114,219 @@ header.navbar {
 }
 
 /* =========================
+   Shared list / filter / summary components
+========================= */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.page-header-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.page-header-title h4 {
+    margin-bottom: 2px;
+    color: #14283d;
+    font-weight: 700;
+}
+
+.page-header-title p {
+    margin-bottom: 0;
+    color: #6b7280;
+}
+
+.page-header-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    /* font-size: 50px; */
+    background: var(--theme-primary);
+}
+
+.page-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.page-header-actions .btn {
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+}
+
+.filter-card,
+.user-table-card,
+.report-filter-card,
+.report-table-card {
+    border: 1px solid #e7ebf0;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    background: #ffffff;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.filter-card .card-header,
+.user-table-card .card-header,
+.report-filter-card .card-header,
+.report-table-card .card-header {
+    border-bottom: 1px solid #edf2f7;
+    background: #fcfdff;
+    padding: 16px 20px;
+}
+
+.card-header-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: #14283d;
+}
+
+.filter-card .card-body,
+.report-filter-card .card-body,
+.user-table-card .card-body,
+.report-table-card .card-body {
+    padding: 20px;
+}
+
+.filter-card .form-control,
+.filter-card .form-select,
+.report-filter-card .form-control {
+    border-radius: 10px;
+    border-color: #dbe3eb;
+    /* padding: 0.7rem 0.9rem; */
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    background: #ffffff;
+    border: 1px solid #e7ebf0;
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+
+.summary-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.summary-icon-primary {
+    background: #eaf2ff;
+    color: #1d4ed8;
+}
+
+.summary-icon-success {
+    background: #e8f8ef;
+    color: #198754;
+}
+
+.summary-icon-danger {
+    background: #fde8ea;
+    color: #e41e31;
+}
+
+.summary-icon-warning {
+    background: #fff4e8;
+    color: #b95a00;
+}
+
+.summary-content .summary-label {
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.summary-content .summary-value {
+    color: #14283d;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.table-card .table,
+.user-table,
+#reportTable {
+    margin-bottom: 0;
+}
+
+.table-card thead th,
+.user-table thead th,
+#reportTable thead th {
+    background: #f8fafc;
+    color: #4b5563;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.table-card tbody td,
+.user-table tbody td,
+#reportTable tbody td {
+    vertical-align: middle;
+    color: #374151;
+}
+
+.table-card tbody tr:hover,
+.user-table tbody tr:hover,
+#reportTable tbody tr:hover {
+    background: #f8fbff;
+}
+
+@media (max-width: 991px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .page-header-actions {
+        width: 100%;
+    }
+
+    .page-header-actions .btn {
+        width: 100%;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================
    Dashboard
 ========================= */
 
@@ -92,7 +354,7 @@ header.navbar {
 
 .hero-icon {
     font-size: 54px;
-    color: #f59e0b;
+    color: #e41e31;
     opacity: .9;
 }
 
@@ -144,7 +406,7 @@ header.navbar {
 }
 
 .bg-orange {
-    background: #f59e0b;
+    background: #e41e31;
 }
 
 .bg-red {
@@ -171,7 +433,7 @@ header.navbar {
 }
 
 .panel-header i {
-    color: #f59e0b;
+    color: #e41e31;
     margin-right: 6px;
 }
 
@@ -214,7 +476,7 @@ header.navbar {
 }
 
 .quick-menu-card:hover i {
-    color: #f59e0b;
+    color: #e41e31;
 }
 
 .notice-list {
@@ -281,7 +543,7 @@ header.navbar {
     border-radius: 16px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0, 0, 0, .25);
-    border-top: 5px solid #f59e0b;
+    border-top: 5px solid #e41e31;
 }
 
 .factory-spinner {
@@ -290,7 +552,7 @@ header.navbar {
     margin: 0 auto 14px;
 
     background: #0b1f3a;
-    color: #f59e0b;
+    color: #e41e31;
 
     border-radius: 50%;
     display: flex;
@@ -348,7 +610,7 @@ header.navbar {
     --theme-secondary: #6c7a89;
     --theme-success: #198754;
     --theme-info: #2f80c9;
-    --theme-warning: #f6a000;
+    --theme-warning: #e41e31;
     --theme-danger: #dc3545;
 
     --theme-light: #f4f7fa;
@@ -531,7 +793,7 @@ header.navbar {
 }
 
 .btn-warning {
-    color: #212529;
+    color: #fff;
     background-color: var(--theme-warning);
     border-color: var(--theme-warning);
 }
@@ -539,19 +801,19 @@ header.navbar {
 .btn-warning:hover,
 .btn-warning:focus,
 .btn-warning:active {
-    color: #212529;
-    background-color: #dd9000;
-    border-color: #dd9000;
+    color: #fff;
+    background-color: #bf1926;
+    border-color: #bf1926;
 }
 
 .badge-warning {
-    color: #212529;
+    color: #fff;
     background-color: var(--theme-warning);
 }
 
 .btn-warning:disabled,
 .btn-warning.disabled {
-    color: var(--theme-text);
+    color: #ffffff;
     background-color: var(--theme-warning);
     border-color: var(--theme-warning);
 }
@@ -625,7 +887,7 @@ header.navbar {
 :root {
     --theme-dark: #0b2745;
     --theme-dark-hover: #12375d;
-    --theme-warning: #f6a000;
+    --theme-warning: #e41e31;
     --theme-light-blue: #8fb8e8;
 }
 
@@ -679,20 +941,6 @@ header.navbar {
     height: 36px;
     flex: 0 0 36px;
     font-size: 15px;
-}
-
-.sidebar-brand-text {
-    min-width: 0;
-    line-height: 1.2;
-}
-
-.sidebar-brand-text strong {
-    font-size: 14px;
-}
-
-.sidebar-brand-text small {
-    font-size: 10px;
-    opacity: 0.8;
 }
 
 .sidebar-toggle {
@@ -749,12 +997,12 @@ header.navbar {
 
 .sidebar-nav .nav-link.active {
     background-color: var(--theme-warning);
-    color: #17212b;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .sidebar-nav .nav-link.active i {
-    color: #17212b;
+    color: #ffffff;
 }
 
 .sidebar-heading {
@@ -823,7 +1071,7 @@ header.navbar {
 
 .sidebar-submenu-link.active {
     background-color: var(--theme-warning);
-    color: #17212b;
+    color: #ffffff;
     font-weight: 600;
 }
 
@@ -1082,4 +1330,15 @@ header.navbar {
     --dp-cell-size: 110px; /* Make calendar days larger */
     --dp-day-name-height: 80px;
     --dp-nav-height: 100px;
+}
+
+
+/* Single select */
+.select2-container--bootstrap4 .select2-selection--single{
+  border-radius: 10px !important;   /* ปรับเป็นค่าที่ต้องการ */
+}
+
+/* Multiple select (ถ้าใช้) */
+.select2-container--bootstrap4 .select2-selection--multiple{
+  border-radius: 10px !important;
 }

@@ -1,7 +1,7 @@
 <?php
 $baseUrl = "";
 require_once __DIR__ . "/include/auth.php";
-$title = "FG Warehouse System";
+$title = "Check Sheet System - Dashboard";
 $pageTitle = "Dashboard";
 $pageSubtitle = "ภาพรวมระบบคลังสินค้า FG";
 include __DIR__ . "/include/header.php";

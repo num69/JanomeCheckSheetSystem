@@ -1,6 +1,6 @@
 <?php
 $baseUrl = isset($baseUrl) ? $baseUrl : '';
-$title = isset($title) ? $title : 'Factory System';
+$title = isset($title) ? $title : 'Check Sheet System';
 $bodyClass = isset($bodyClass) ? $bodyClass : '';
 $bodyStyle = isset($bodyStyle) ? $bodyStyle : '';
 ?>
@@ -13,6 +13,8 @@ $bodyStyle = isset($bodyStyle) ? $bodyStyle : '';
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" href="<?= $baseUrl ?>assets/images/favicon.ico" type="image/x-icon">
+    
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="<?= $baseUrl ?>assets/vendor/bootstrap/css/bootstrap.min.css">
 
@@ -36,6 +38,7 @@ $bodyStyle = isset($bodyStyle) ? $bodyStyle : '';
     <link rel="stylesheet" href="<?= $baseUrl ?>assets/vendor/air-datepicker/css/air-datepicker.css">
 
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="<?= $baseUrl ?>assets/css/fonts.css">
     <link rel="stylesheet" href="<?= $baseUrl ?>assets/css/app.css?v=<?= time() ?>">
     <?php if (isset($pageStyles) && is_array($pageStyles)): ?>
         <?php foreach ($pageStyles as $style): ?>

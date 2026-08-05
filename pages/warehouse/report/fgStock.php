@@ -1,7 +1,6 @@
 <?php
 $baseUrl = "../../../";
 require_once __DIR__ . "/../../../" . "include/auth.php";
-$title = "Report FG Stock in - out";
 $pageTitle = "Warehouse";
 $pageSubtitle = "FG Stock";
 $pageScripts = array("assets/js/pages/warehouse/report/fgStock.js?v=" . time());

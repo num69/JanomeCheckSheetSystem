@@ -57,7 +57,7 @@ class DbSqlSrv
      * @var array
      */
     var $connectionInfo = array(
-        "Database" => "Warehouse",
+        "Database" => "InspCheckSheetDB",
         "UID" => "sa",
         "PWD" => "1234",
         "CharacterSet" => "UTF-8",
@@ -269,14 +269,15 @@ class DbSqlSrv
     /**
      * เพิ่มข้อมูลใหม่หนึ่งแถวและคืนค่า IDENTITY ที่สร้างขึ้น
      *
-     * เมธอดนี้กำหนดให้คอลัมน์ IDENTITY มีชื่อว่า ID
+    * เมธอดนี้สามารถกำหนดชื่อคอลัมน์ IDENTITY ได้ โดยค่าเริ่มต้นคือ ID
      *
      * @param string $table ชื่อตารางที่ต้องการเพิ่มข้อมูล
      * @param array $data ข้อมูลแบบชื่อคอลัมน์และค่าที่ต้องการบันทึก
+     * @param string $identityColumn ชื่อคอลัมน์ IDENTITY ที่ต้องการคืนค่า
      * @return int|null ค่า IDENTITY ที่สร้างขึ้น หรือ null เมื่อไม่พบค่า
      * @throws InvalidArgumentException เมื่อข้อมูลสำหรับบันทึกว่างเปล่า
      */
-    function insert_id($table, $data)
+    function insert_id($table, $data, $identityColumn = 'ID')
     {
         if (empty($data) || !is_array($data)) {
             throw new InvalidArgumentException('Insert data cannot be empty.');
@@ -295,7 +296,7 @@ class DbSqlSrv
 
         $sql = 'INSERT INTO ' . $table
             . ' (' . implode(', ', $fields) . ')'
-            . ' OUTPUT INSERTED.ID'
+            . ' OUTPUT INSERTED.' . $this->quoteIdentifier($identityColumn)
             . ' VALUES (' . implode(', ', $holders) . ')';
 
         $stmt = $this->query($sql, $params);

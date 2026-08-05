@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/include/session.php";
 // $baseUrl = "./";
-$title = "Login - Factory System";
+$title = "Check Sheet System - Login";
 $bodyClass = "login-page";
 $pageScripts = array("assets/js/login.js");
 $pageStyles = array("assets/css/login.css");
@@ -17,11 +17,18 @@ include __DIR__ . "/include/header.php";
     <div class="login-card">
 
         <div class="login-brand">
-            <div class="brand-icon">
-                <i class="fas fa-warehouse"></i>
+            <div class="d-flex flex-column">
+                <img src="<?= $baseUrl ?>assets/images/logo-janome.png"
+                    alt="JANOME Logo"
+                    class="logo-main mb-1">
             </div>
-            <h4>FG Warehouse System</h4>
-            <p>Factory Management Portal</p>
+            <div class="d-flex align-items-center justify-content-center mb-3">
+                <div class="brand-icon p-1 d-flex align-items-center justify-content-center rounded bg-warning">
+                    <img src="<?= $baseUrl ?>assets/images/sewing-machine.png" alt="JANOME Logo" class="logo-icon">
+                </div>
+            </div>
+            <h4>Check Sheet System</h4>
+            <p>Smart Inspection Workflow</p>
         </div>
 
         <form id="loginForm">
@@ -54,7 +61,7 @@ include __DIR__ . "/include/header.php";
                 เข้าสู่ระบบ
             </button>
             <div class="login-footer">
-                Local Factory System
+                <!-- Local Factory System -->
             </div>
         </form>
     </div>
