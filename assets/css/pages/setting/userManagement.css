@@ -1,14 +1,14 @@
 .filter-card,
-.user-table-card {
+.entity-table-card {
 	border-radius: 14px;
 }
 
-.user-table td,
-.user-table th {
+.entity-table td,
+.entity-table th {
 	vertical-align: middle;
 }
 
-.user-action-btn {
+.entity-action-btn {
 	min-width: 34px;
 }
 

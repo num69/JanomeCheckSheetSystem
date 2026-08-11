@@ -167,7 +167,7 @@ header.navbar {
 }
 
 .filter-card,
-.user-table-card,
+.entity-table-card,
 .report-filter-card,
 .report-table-card {
     border: 1px solid #e7ebf0;
@@ -179,7 +179,7 @@ header.navbar {
 }
 
 .filter-card .card-header,
-.user-table-card .card-header,
+.entity-table-card .card-header,
 .report-filter-card .card-header,
 .report-table-card .card-header {
     border-bottom: 1px solid #edf2f7;
@@ -197,7 +197,7 @@ header.navbar {
 
 .filter-card .card-body,
 .report-filter-card .card-body,
-.user-table-card .card-body,
+.entity-table-card .card-body,
 .report-table-card .card-body {
     padding: 20px;
 }
@@ -272,13 +272,13 @@ header.navbar {
 }
 
 .table-card .table,
-.user-table,
+.entity-table,
 #reportTable {
     margin-bottom: 0;
 }
 
 .table-card thead th,
-.user-table thead th,
+.entity-table thead th,
 #reportTable thead th {
     background: #f8fafc;
     color: #4b5563;
@@ -289,14 +289,14 @@ header.navbar {
 }
 
 .table-card tbody td,
-.user-table tbody td,
+.entity-table tbody td,
 #reportTable tbody td {
     vertical-align: middle;
     color: #374151;
 }
 
 .table-card tbody tr:hover,
-.user-table tbody tr:hover,
+.entity-table tbody tr:hover,
 #reportTable tbody tr:hover {
     background: #f8fbff;
 }

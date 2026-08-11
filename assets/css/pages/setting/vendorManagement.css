@@ -1,0 +1,53 @@
+.filter-card,
+.entity-table-card {
+	border-radius: 14px;
+}
+
+.entity-table td,
+.entity-table th {
+	vertical-align: middle;
+}
+
+.entity-action-btn {
+	min-width: 34px;
+}
+
+#vendorPagination {
+	margin-top: 1rem;
+}
+
+#editVendorModal .modal-content {
+	border: 1px solid #e7ebf0;
+	border-radius: 14px;
+	box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+	background: #ffffff;
+	overflow: hidden;
+}
+
+#editVendorModal .modal-header {
+	border-bottom: 1px solid #edf2f7;
+	background: #fcfdff;
+	padding: 16px 20px;
+}
+
+#editVendorModal .modal-body {
+	padding: 20px;
+}
+
+#editVendorModal .modal-footer {
+	border-top: 1px solid #edf2f7;
+	background: #ffffff;
+	padding: 14px 20px;
+}
+
+#editVendorModal .modal-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-weight: 700;
+	color: #14283d;
+}
+
+#editVendorModal .form-group label {
+	font-weight: 600;
+}

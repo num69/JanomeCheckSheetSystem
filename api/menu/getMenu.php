@@ -7,84 +7,90 @@ authorized();
 $menu = array(
         array(
             "type" => "link",
-            "label" => "Home",
+            "label" => "หน้าหลัก",
             "icon" => "fas fa-home",
             "href" => "home.php"
         ),
-        array(
-            "type" => "section",
-            "label" => "Warehouse",
-            "children" => array(
-                array(
-                    "type" => "link",
-                    "label" => "Receive",
-                    "icon" => "fas fa-dolly",
-                    "href" => "pages/receive/index.php"
-                ),
-                array(
-                    "type" => "link",
-                    "label" => "Issue / Delivery",
-                    "icon" => "fas fa-truck-loading",
-                    "href" => "pages/issue/index.php"
-                ),
-                array(
-                    "type" => "link",
-                    "label" => "Transfer",
-                    "icon" => "fas fa-exchange-alt",
-                    "href" => "pages/transfer/index.php"
-                ),
-                array(
-                    "type" => "submenu",
-                    "label" => "Report",
-                    "icon" => "fas fa-chart-line",
-                    "children" => array(
-                        array(
-                            "type" => "link",
-                            "label" => "Report Overview",
-                            "href" => "pages/warehouse/report/index.php"
-                        ),
-                        array(
-                            "type" => "link",
-                            "label" => "FG Stock",
-                            "href" => "pages/warehouse/report/fgStock.php"
-                        )
-                    )
-                )
-            )
-        ),
-        array(
-            "type" => "section",
-            "label" => "Operation",
-            "children" => array(
-                array(
-                    "type" => "link",
-                    "label" => "Scan Barcode",
-                    "icon" => "fas fa-barcode",
-                    "href" => "pages/scan/index.php"
-                ),
-                array(
-                    "type" => "link",
-                    "label" => "Stock Check",
-                    "icon" => "fas fa-clipboard-check",
-                    "href" => "pages/stock-check/index.php"
-                )
-            )
-        ),
+        // array(
+        //     "type" => "section",
+        //     "label" => "Warehouse",
+        //     "children" => array(
+        //         array(
+        //             "type" => "link",
+        //             "label" => "Receive",
+        //             "icon" => "fas fa-dolly",
+        //             "href" => "pages/receive/index.php"
+        //         ),
+        //         array(
+        //             "type" => "link",
+        //             "label" => "Issue / Delivery",
+        //             "icon" => "fas fa-truck-loading",
+        //             "href" => "pages/issue/index.php"
+        //         ),
+        //         array(
+        //             "type" => "link",
+        //             "label" => "Transfer",
+        //             "icon" => "fas fa-exchange-alt",
+        //             "href" => "pages/transfer/index.php"
+        //         ),
+        //         array(
+        //             "type" => "submenu",
+        //             "label" => "Report",
+        //             "icon" => "fas fa-chart-line",
+        //             "children" => array(
+        //                 array(
+        //                     "type" => "link",
+        //                     "label" => "Report Overview",
+        //                     "href" => "pages/warehouse/report/index.php"
+        //                 ),
+        //                 array(
+        //                     "type" => "link",
+        //                     "label" => "FG Stock",
+        //                     "href" => "pages/warehouse/report/fgStock.php"
+        //                 )
+        //             )
+        //         )
+        //     )
+        // ),
+        // array(
+        //     "type" => "section",
+        //     "label" => "Operation",
+        //     "children" => array(
+        //         array(
+        //             "type" => "link",
+        //             "label" => "Scan Barcode",
+        //             "icon" => "fas fa-barcode",
+        //             "href" => "pages/scan/index.php"
+        //         ),
+        //         array(
+        //             "type" => "link",
+        //             "label" => "Stock Check",
+        //             "icon" => "fas fa-clipboard-check",
+        //             "href" => "pages/stock-check/index.php"
+        //         )
+        //     )
+        // ),
         array(
             "type" => "section",
             "label" => "ตั้งค่าระบบ",
             "children" => array(
                 array(
                     "type" => "link",
-                    "label" => "Status",
-                    "icon" => "fas fa-cogs",
-                    "href" => "pages/status/index.php"
-                ),
-                array(
-                    "type" => "link",
                     "label" => "จัดการผู้ใช้งาน",
                     "icon" => "fas fa-users-cog",
                     "href" => "pages/setting/userManagement.php"
+                ),
+                array(
+                    "type" => "link",
+                    "label" => "จัดการผู้ผลิต",
+                    "icon" => "fas fa-industry",
+                    "href" => "pages/setting/vendorManagement.php"
+                ),
+                array(
+                    "type" => "link",
+                    "label" => "จัดการชิ้นส่วน",
+                    "icon" => "fas fa-cogs",
+                    "href" => "pages/setting/partManagement.php"
                 )
             )
         )

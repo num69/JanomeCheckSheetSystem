@@ -66,7 +66,7 @@ include __DIR__ . "/../../" . "include/header.php";
                 </div>
             </div>
 
-            <div class="card user-table-card">
+            <div class="card entity-table-card">
                 <div class="card-header">
                     <div class="card-header-title">
                         <i class="fas fa-table"></i>
@@ -75,7 +75,7 @@ include __DIR__ . "/../../" . "include/header.php";
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="userTable" class="table table-hover table-bordered w-100 user-table">
+                        <table id="userTable" class="table table-hover table-bordered w-100 entity-table">
                             <thead>
                                 <tr>
                                     <th>รหัสพนักงาน</th>

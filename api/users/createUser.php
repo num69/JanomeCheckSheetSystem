@@ -10,7 +10,7 @@ function normalizeOneChar($value)
     return strtoupper(trim((string) $value));
 }
 
-function saveUploadFile($inputName, $prefix)
+function saveUploadFile($inputName, $subpath)
 {
     if (!isset($_FILES[$inputName]) || !is_array($_FILES[$inputName])) {
         return null;
@@ -37,7 +37,7 @@ function saveUploadFile($inputName, $prefix)
         throw new RuntimeException("ไม่พบไฟล์ที่อัปโหลด");
     }
 
-    $uploadDirectory = dirname(__DIR__, 2) . "/uploads";
+    $uploadDirectory = dirname(__DIR__, 2) . "/uploads/".$subpath;
 
     if (!is_dir($uploadDirectory) && !mkdir($uploadDirectory, 0775, true)) {
         throw new RuntimeException("ไม่สามารถสร้างโฟลเดอร์อัปโหลด");
@@ -46,7 +46,7 @@ function saveUploadFile($inputName, $prefix)
     $attempt = 0;
     do {
         $seed = base_convert((string) time(), 10, 36) . base_convert((string) mt_rand(100, 999), 10, 36);
-        $filename = strtolower($prefix . substr($seed, 0, 10) . "." . $extension);
+        $filename = strtolower(substr($seed, 0, 10) . "." . $extension);
         $destination = $uploadDirectory . "/" . $filename;
         $attempt++;
     } while (file_exists($destination) && $attempt < 5);
@@ -138,8 +138,8 @@ try {
         jsonResponseBadRequest("รหัสพนักงานหรือ Username ซ้ำกับข้อมูลเดิม");
     }
 
-    $userImage = saveUploadFile("userImage", "i");
-    $userSignature = saveUploadFile("userSignature", "s");
+    $userImage = saveUploadFile("userImage", "profile");
+    $userSignature = saveUploadFile("userSignature", "signature");
     $data = array(
             "UCode" => $userCode,
             "NameEN" => ($nameEn === "") ? null : $nameEn,

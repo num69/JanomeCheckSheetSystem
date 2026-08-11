@@ -1473,7 +1473,7 @@ window.app.loadSidebarMenu = async function () {
     } catch (error) {
         window.app.storage.remove(cacheKey);
     }
-
+    cachedData = null; // ลบ cache ชั่วคราวเพื่อทดสอบการโหลดเมนูจาก API
     /*
      * ใช้ cache หากยังไม่เกิน 10 นาที
      */
