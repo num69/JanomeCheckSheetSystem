@@ -36,15 +36,12 @@
 }
 
 #editUserModal .modal-body {
-	padding: 20px;
+	padding: 24px;
+	background: #f5f8fb;
 }
 
 #editUserModal .modal-footer {
-	border-top: 1px solid #edf2f7;
-	background: #ffffff;
-	padding: 14px 20px;
-	border-bottom-left-radius: 14px;
-	border-bottom-right-radius: 14px;
+	border-top: 0px solid #edf2f7;
 }
 
 #editUserModal .modal-title {
@@ -57,7 +54,102 @@
 
 #editUserModal .form-group label {
 	font-weight: 600;
+	font-size: .83rem;
+	color: #334155;
 }
+
+#editUserModal .modal-dialog { max-width: 1120px; }
+#editUserModal .modal-content { border-radius: 18px; }
+#editUserModal .modal-header {
+	padding: 18px 24px;
+	background: linear-gradient(110deg, #0b1f3a, #12345c);
+	border-bottom: 0;
+}
+#editUserModal .modal-title { color: #fff; }
+#editUserModal .modal-header .close { color: #fff; opacity: .8; text-shadow: none; }
+#editUserModal .modal-header .close:hover { opacity: 1; }
+#editUserModal .modal-body > .row { margin-left: -10px; margin-right: -10px; }
+#editUserModal .user-form-main,
+#editUserModal .user-form-policy { padding-left: 10px; padding-right: 10px; }
+#editUserModal .user-form-main {
+	padding: 20px 22px 8px;
+	background: #fff;
+	border: 1px solid #e4eaf0;
+	border-radius: 14px;
+	box-shadow: 0 6px 18px rgba(15, 23, 42, .04);
+}
+
+#editUserModal .form-section-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 18px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #edf2f7;
+	color: #0b1f3a;
+}
+
+#editUserModal .form-section-title > span:last-child {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.25;
+}
+
+#editUserModal .form-section-title small {
+	margin-top: 3px;
+	font-size: .72rem;
+	font-weight: 400;
+	color: #94a3b8;
+}
+
+#editUserModal .form-section-icon {
+	width: 34px;
+	height: 34px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9px;
+	color: #0b1f3a;
+	background: transparent;
+}
+#editUserModal .user-form-policy .menu-policy-box {
+	height: 100%;
+	margin-bottom: 0;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #e4eaf0;
+	border-radius: 14px;
+	box-shadow: 0 6px 18px rgba(15, 23, 42, .04);
+}
+#editUserModal .user-form-policy .menu-policy-box > label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding-bottom: 14px;
+	margin-bottom: 16px;
+	border-bottom: 1px solid #edf2f7;
+	font-size: 1rem;
+	color: #0b1f3a;
+}
+#editUserModal .policy-section-title { margin-top: 0; }
+#editUserModal .user-form-policy .custom-control-label { font-size: .8rem; font-weight: 500; }
+#editUserModal .user-form-policy .custom-control-input:checked ~ .custom-control-label::before {
+	border-color: #e41e31;
+	background-color: #e41e31;
+}
+#editUserModal .form-control {
+	min-height: 40px;
+	border-color: #dbe3eb;
+	border-radius: 9px;
+	font-size: .9rem;
+}
+#editUserModal .form-control:focus {
+	border-color: #4779a8;
+	box-shadow: 0 0 0 .2rem rgba(18, 52, 92, .1);
+}
+#editUserModal .modal-footer { padding: 16px 24px; }
+#editUserModal #btnSaveUser { min-width: 170px; border-radius: 9px; font-weight: 700; }
+#editUserModal .modal-footer .btn-light { border-radius: 9px; }
 
 .upload-tile-wrapper {
 	position: relative;
@@ -119,4 +211,26 @@
 	font-size: 0.8rem;
 	font-weight: 600;
 	text-align: center;
+}
+
+/* Keep menu permissions beside the upload fields in the user modal. */
+#editUserModal .user-form-columns { row-gap: 0; }
+#editUserModal .user-form-main { min-width: 0; }
+#editUserModal .user-form-policy { min-width: 0; }
+
+#editUserModal .menu-policy-box {
+	margin-bottom: 0;
+	padding: 16px;
+	border: 1px solid #e7ebf0;
+	border-radius: 12px;
+	background: #f8fafc;
+}
+
+@media (max-width: 767.98px) {
+	#editUserModal .modal-body { padding: 14px; }
+	#editUserModal .user-form-main { padding: 16px 14px 4px; }
+	#editUserModal .user-form-policy { margin-top: 14px; }
+	#editUserModal .menu-policy-box {
+		margin-top: 16px;
+	}
 }

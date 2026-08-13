@@ -26,7 +26,8 @@ try {
             . "[USignature] AS UserSignature, "
             . "[Username] AS Username, "
             . "[UGroup] AS UserGroup, "
-            . "[UStatus] AS StatusCode "
+            . "[UStatus] AS StatusCode, "
+            . "[UPolicy] AS UserPolicy "
         . "FROM [dbo].[Insp_Users] "
         . "WHERE [UID] = ?",
         array($userId)

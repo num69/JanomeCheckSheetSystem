@@ -78,7 +78,11 @@ $menu = array(
                     "type" => "link",
                     "label" => "จัดการผู้ใช้งาน",
                     "icon" => "fas fa-users-cog",
-                    "href" => "pages/setting/userManagement.php"
+                    "href" => "pages/setting/userManagement.php",
+                    "activePaths" => array(
+                        "pages/setting/userManagement.php",
+                        "pages/setting/userManagementAdd.php"
+                    )
                 ),
                 array(
                     "type" => "link",

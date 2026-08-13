@@ -72,6 +72,7 @@ $username = isset($_POST["username"]) ? trim($_POST["username"]) : "";
 $password = isset($_POST["password"]) ? trim($_POST["password"]) : "";
 $userGroup = normalizeOneChar(isset($_POST["userGroup"]) ? $_POST["userGroup"] : "");
 $statusCode = normalizeOneChar(isset($_POST["statusCode"]) ? $_POST["statusCode"] : "");
+$userPolicy = strtoupper(trim(isset($_POST["userPolicy"]) ? $_POST["userPolicy"] : "YYYYYYYYYY"));
 
 if ($userId <= 0) {
     jsonResponseBadRequest("ไม่พบรหัสผู้ใช้งาน");
@@ -91,6 +92,9 @@ if (!in_array($userGroup, array("1", "0"), true)) {
 
 if (!in_array($statusCode, array("Y", "N"), true)) {
     jsonResponseBadRequest("UStatus ต้องเป็น Y หรือ N");
+}
+if (!preg_match('/^[YN]{10}$/', $userPolicy)) {
+    jsonResponseBadRequest("UPolicy ต้องมี Y/N จำนวน 10 ตัวอักษร");
 }
 
 if (mb_strlen($userCode, "UTF-8") > 8) {
@@ -161,6 +165,7 @@ try {
         "Username" => $username,
         "UGroup" => $userGroup,
         "UStatus" => $statusCode
+        ,"UPolicy" => $userPolicy
     );
 
     if ($newUserImage !== null) {

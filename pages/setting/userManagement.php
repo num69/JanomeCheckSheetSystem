@@ -82,6 +82,7 @@ include __DIR__ . "/../../" . "include/header.php";
                                     <th>ชื่อ - สกุล</th>
                                     <th>ตำแหน่งงาน</th>
                                     <th>กลุ่ม / สิทธิ์</th>
+                                    <th>สถานะ</th>
                                     <th class="text-center">จัดการ</th>
                                 </tr>
                             </thead>
@@ -101,12 +102,12 @@ include __DIR__ . "/../../" . "include/header.php";
 
 <!-- editUserModal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editUserModalLabel">
                     <i class="fas fa-user-edit mr-2"></i>
-                    ผู้ใช้งาน
+                    <span>ข้อมูลผู้ใช้งาน</span>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -115,6 +116,12 @@ include __DIR__ . "/../../" . "include/header.php";
             <form id="editUserForm" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" id="editUserId" name="userId">
+                    <div class="row user-form-columns">
+                    <div class="col-md-8 user-form-main">
+                    <div class="form-section-title">
+                        <span class="form-section-icon"><i class="fas fa-user"></i></span>
+                        <span><strong>ข้อมูลผู้ใช้งาน</strong><small>ข้อมูลพนักงานและบัญชีผู้ใช้งาน</small></span>
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="editUserCode">รหัสพนักงาน</label>
@@ -131,26 +138,26 @@ include __DIR__ . "/../../" . "include/header.php";
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="editNameEn">ชื่อภาษาอังกฤษ (Name EN)</label>
                             <input type="text" class="form-control" id="editNameEn" name="nameEn" maxlength="50">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="editNameTh">ชื่อภาษาไทย (Name TH)</label>
                             <input type="text" class="form-control" id="editNameTh" name="nameTh" maxlength="50">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="editPosition">ตำแหน่งงาน</label>
+                            <input type="text" class="form-control" id="editPosition" name="position" maxlength="20">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="editPosition">ตำแหน่งงาน</label>
-                            <input type="text" class="form-control" id="editPosition" name="position" maxlength="20">
-                        </div>
-                        <div class="form-group col-md-4">
                             <label for="editEmail">อีเมล (Email)</label>
                             <input type="email" class="form-control" id="editEmail" name="email" maxlength="50">
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <label for="editUserGroup">กลุ่ม / สิทธิ์</label>
                             <select class="form-control" id="editUserGroup" name="userGroup" required>
                                 <option value="">เลือก</option>
@@ -158,7 +165,7 @@ include __DIR__ . "/../../" . "include/header.php";
                                 <option value="0">พนักงาน</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <label for="editStatusCode">สถานะ</label>
                             <select class="form-control" id="editStatusCode" name="statusCode" required>
                                 <option value="">เลือก</option>
@@ -168,41 +175,62 @@ include __DIR__ . "/../../" . "include/header.php";
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>รูปโปรไฟล์ (User Image)</label>
-                            <div class="upload-tile-wrapper">
-                                <label class="upload-tile" for="editUserImage">
-                                    <img id="editUserImagePreview" class="upload-preview-image d-none" alt="User Image Preview">
-                                    <div id="editUserImagePlaceholder" class="upload-placeholder">
-                                        <i class="fas fa-image"></i>
-                                        <span>คลิกเพื่ออัปโหลดรูป</span>
-                                    </div>
-                                    <div class="upload-overlay">
-                                        <span id="editUserImageOverlayText">อัปโหลดรูป</span>
-                                    </div>
-                                </label>
-                                <input type="file" id="editUserImage" name="userImage" accept="image/*" class="d-none">
+                    <div class="form-row user-media-row">
+                            <div class="form-group col-md-6">
+                                <label>รูปโปรไฟล์ (User Image)</label>
+                                <div class="upload-tile-wrapper">
+                                    <label class="upload-tile" for="editUserImage">
+                                        <img id="editUserImagePreview" class="upload-preview-image d-none" alt="User Image Preview">
+                                        <div id="editUserImagePlaceholder" class="upload-placeholder">
+                                            <i class="fas fa-image"></i>
+                                            <span>คลิกเพื่ออัปโหลดรูป</span>
+                                        </div>
+                                        <div class="upload-overlay">
+                                            <span id="editUserImageOverlayText">อัปโหลดรูป</span>
+                                        </div>
+                                    </label>
+                                    <input type="file" id="editUserImage" name="userImage" accept="image/*" class="d-none">
+                                </div>
+                                <small class="form-text text-muted" id="currentUserImageText">ไฟล์ปัจจุบัน: -</small>
                             </div>
-                            <small class="form-text text-muted" id="currentUserImageText">ไฟล์ปัจจุบัน: -</small>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>ลายเซ็น (User Signature)</label>
-                            <div class="upload-tile-wrapper">
-                                <label class="upload-tile" for="editUserSignature">
-                                    <img id="editUserSignaturePreview" class="upload-preview-image d-none" alt="User Signature Preview">
-                                    <div id="editUserSignaturePlaceholder" class="upload-placeholder">
-                                        <i class="fas fa-signature"></i>
-                                        <span>คลิกเพื่ออัปโหลดลายเซ็น</span>
-                                    </div>
-                                    <div class="upload-overlay">
-                                        <span id="editUserSignatureOverlayText">อัปโหลดลายเซ็น</span>
-                                    </div>
-                                </label>
-                                <input type="file" id="editUserSignature" name="userSignature" accept="image/*" class="d-none">
+                            <div class="form-group col-md-6">
+                                <label>ลายเซ็น (User Signature)</label>
+                                <div class="upload-tile-wrapper">
+                                    <label class="upload-tile" for="editUserSignature">
+                                        <img id="editUserSignaturePreview" class="upload-preview-image d-none" alt="User Signature Preview">
+                                        <div id="editUserSignaturePlaceholder" class="upload-placeholder">
+                                            <i class="fas fa-signature"></i>
+                                            <span>คลิกเพื่ออัปโหลดลายเซ็น</span>
+                                        </div>
+                                        <div class="upload-overlay">
+                                            <span id="editUserSignatureOverlayText">อัปโหลดลายเซ็น</span>
+                                        </div>
+                                    </label>
+                                    <input type="file" id="editUserSignature" name="userSignature" accept="image/*" class="d-none">
+                                </div>
+                                <small class="form-text text-muted" id="currentUserSignatureText">ไฟล์ปัจจุบัน: -</small>
                             </div>
-                            <small class="form-text text-muted" id="currentUserSignatureText">ไฟล์ปัจจุบัน: -</small>
-                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-4 user-form-policy">
+                        <div class="form-group menu-policy-box">
+                            <div class="form-section-title policy-section-title">
+                                <span class="form-section-icon"><i class="fas fa-key"></i></span>
+                                <span><strong>สิทธิ์การเข้าถึง</strong><small>กำหนดเมนูที่ผู้ใช้งานสามารถเปิดได้</small></span>
+                            </div>
+                            <div class="row" id="userMenuPolicyList">
+                                <?php $menuPolicyLabels = array("หน้าหลัก", "จัดการผู้ใช้งาน", "จัดการผู้ผลิต", "จัดการชิ้นส่วน", "เมนูที่ 5", "เมนูที่ 6", "เมนูที่ 7", "เมนูที่ 8", "เมนูที่ 9", "เมนูที่ 10");
+                                foreach ($menuPolicyLabels as $index => $label): ?>
+                                    <div class="col-12">
+                                        <div class="custom-control custom-checkbox mb-2">
+                                            <input type="checkbox" class="custom-control-input js-menu-policy" id="menuPolicy<?= $index ?>" data-index="<?= $index ?>">
+                                            <label class="custom-control-label" for="menuPolicy<?= $index ?>"><?= htmlspecialchars($label) ?></label>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <small class="form-text text-muted">UPolicy 10 ตัวอักษร: Y = อนุญาต, N = ไม่อนุญาต</small>
+                    </div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -75,7 +75,24 @@ $(async function () {
     });
 
     $(document).on("click", ".js-delete-user", function () {
-        window.app.showWarning("ยังไม่เปิดใช้งานการลบผู้ใช้งาน");
+        var userId = parseInt($(this).data("userId"), 10) || 0;
+        if (userId <= 0) return;
+        window.app.confirmDelete(async function () {
+            try {
+                var response = await $.ajax({
+                    url: window.app.apiUrl("api/users/deleteUser.php"),
+                    type: "POST", dataType: "json", data: { userId: userId }
+                });
+                if (!response.success) {
+                    await window.app.showError(response.message || "ไม่สามารถลบผู้ใช้งานได้");
+                    return;
+                }
+                await window.app.showSuccess("ลบผู้ใช้งานเรียบร้อยแล้ว");
+                await loadUsers(userPagination ? userPagination.getPage() : 1);
+            } catch (xhr) {
+                await window.app.handleAjaxError(xhr, "เกิดข้อผิดพลาดในการลบข้อมูล");
+            }
+        });
     });
 
     $("#editUserForm").on("submit", async function (event) {
@@ -162,7 +179,7 @@ function renderUserTable(rows, pagination, pageSize) {
     var currentPageSize = parseInt(pagination.pageSize, 10) || pageSize || 10;
 
     if (!rows || rows.length === 0) {
-        html = "<tr><td colspan=\"5\" class=\"text-center text-muted py-4\">ไม่พบข้อมูล</td></tr>";
+        html = "<tr><td colspan=\"6\" class=\"text-center text-muted py-4\">ไม่พบข้อมูล</td></tr>";
     } else {
         $.each(rows, function (index, row) {
             var displayName =  `${row.NameEn || ""}`;
@@ -178,6 +195,9 @@ function renderUserTable(rows, pagination, pageSize) {
                     + "<td>" + escapeHtml(displayName) + "</td>"
                     + "<td>" + escapeHtml(row.Position) + "</td>"
                     + "<td>" + groupLabel + "</td>"
+                    + "<td>" + (String(row.StatusCode || "").toUpperCase() === "Y"
+                        ? '<span class="badge badge-success">ใช้งาน</span>'
+                        : '<span class="badge badge-light">ปิดใช้งาน</span>') + "</td>"
                     + "<td class=\"text-center\">"
                         + "<button type=\"button\" class=\"btn btn-sm btn-outline-secondary entity-action-btn js-edit-user mr-1\" data-user-id=\"" + escapeHtml(row.UserId) + "\" title=\"แก้ไข\">"
                             + "<i class=\"fas fa-edit\"></i>"
@@ -204,8 +224,9 @@ async function openEditModal(userId) {
     activeEditUserId = userId;
     clearEditForm();
     setModalMode("edit");
-
+    window.app.showScLoading();
     try {
+        var delay = window.app.delay(500); // Optional delay for smoother UX
         var response = await $.ajax({
             url: window.app.apiUrl("api/users/getUserById.php"),
             type: "GET",
@@ -216,14 +237,18 @@ async function openEditModal(userId) {
         });
 
         if (!response.success || !response.data) {
+            await delay;
             await window.app.showError(response.message || "ไม่สามารถดึงข้อมูลผู้ใช้งานได้");
             return;
         }
-
+        
         fillEditForm(response.data);
         $("#editUserModal").modal("show");
+        await delay;
     } catch (xhr) {
         await window.app.handleAjaxError(xhr, "เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้งาน");
+    } finally {
+        window.app.hideScLoading();
     }
 }
 
@@ -256,12 +281,30 @@ function fillEditForm(user) {
 
     setSelectValueOrAppend("#editUserGroup", String(user.UserGroup || "").trim());
     setSelectValueOrAppend("#editStatusCode", String(user.StatusCode || "").trim());
+    setMenuPolicy(user.UserPolicy || "YYYYYYYYYY");
+}
+
+function setMenuPolicy(policy) {
+    var normalized = String(policy || "").toUpperCase();
+    $(".js-menu-policy").each(function () {
+        var index = parseInt($(this).data("index"), 10);
+        $(this).prop("checked", normalized.charAt(index) === "Y");
+    });
+}
+
+function getMenuPolicy() {
+    var policy = "";
+    $(".js-menu-policy").each(function () {
+        policy += $(this).is(":checked") ? "Y" : "N";
+    });
+    return policy;
 }
 
 function clearEditForm() {
     $("#editUserForm")[0].reset();
     $("#editUserId").val("");
     $("#editPassword").val("");
+    $(".js-menu-policy").prop("checked", false);
 
     resetUploadPreview(
         "#editUserImagePreview",
@@ -287,6 +330,7 @@ function openCreateModal() {
     activeEditUserId = 0;
     clearEditForm();
     setModalMode("create");
+    setMenuPolicy("YYYYYYYYYY");
     $("#editUserModal").modal("show");
 }
 
@@ -414,6 +458,7 @@ async function saveUserForm(formElement) {
 
     try {
         var formData = new FormData(formElement);
+        formData.set("userPolicy", getMenuPolicy());
         var isCreateMode = userFormMode === "create";
 
         if (!isCreateMode) {

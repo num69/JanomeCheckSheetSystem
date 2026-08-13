@@ -1263,6 +1263,33 @@ window.app.getCurrentAppRelativePath = function () {
 };
 
 
+window.app.isSidebarItemActive = function (item, currentPath) {
+    if (!item || typeof item !== "object") {
+        return false;
+    }
+
+    var normalizedCurrentPath = String(currentPath || "").replace(/^\/+/, "");
+    var href = String(item.href || "").replace(/^\/+/, "");
+
+    if (href && href === normalizedCurrentPath) {
+        return true;
+    }
+
+    if ($.isArray(item.activePaths)) {
+        for (var index = 0; index < item.activePaths.length; index++) {
+            var activePath = String(item.activePaths[index] || "")
+                .replace(/^\/+/, "");
+
+            if (activePath && activePath === normalizedCurrentPath) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+};
+
+
 window.app.escapeHtml = function (value) {
     return $("<div>").text(
         value === null || value === undefined
@@ -1300,10 +1327,7 @@ window.app.sidebarItemHasActiveChild = function (
             continue;
         }
 
-        if (
-            child.href &&
-            String(child.href).replace(/^\/+/, "") === currentPath
-        ) {
+        if (window.app.isSidebarItemActive(child, currentPath)) {
             return true;
         }
     }
@@ -1381,7 +1405,10 @@ window.app.renderSidebarMenuItem = function (
 
             var childLabel = window.app.escapeHtml(child.label);
             var childHref = String(child.href || "#").replace(/^\/+/, "");
-            var childActive = childHref === currentPath;
+            var childActive = window.app.isSidebarItemActive(
+                child,
+                currentPath
+            );
             var childUrl = window.app.apiUrl(childHref);
 
             submenuHtml += "<a href=\"" +
@@ -1404,7 +1431,7 @@ window.app.renderSidebarMenuItem = function (
     }
 
     var href = String(item.href || "#").replace(/^\/+/, "");
-    var isActive = href === currentPath;
+    var isActive = window.app.isSidebarItemActive(item, currentPath);
     var url = window.app.apiUrl(href);
 
     return "<a href=\"" +
