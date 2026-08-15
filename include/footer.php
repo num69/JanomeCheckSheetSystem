@@ -80,6 +80,7 @@
         </script>
 
         <script src="<?= $baseUrl ?>assets/js/app.js?v=<?= time() ?>"></script>
+        <script src="<?= $baseUrl ?>assets/js/topbar.js?v=<?= time() ?>"></script>
 
         <!-- <script>
             alert("getQueryParam: " + typeof window.appAnimation);

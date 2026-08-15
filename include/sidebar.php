@@ -25,10 +25,12 @@
     <nav class="nav flex-column sidebar-nav px-2 sidebar-menu-animated" data-sidebar-menu="true">
     </nav>
 
-    <a href="<?= $baseUrl ?>logout.php"
-        class="nav-link text-danger d-flex align-items-center sidebar-logout">
+    <a href="<?= htmlspecialchars($baseUrl) ?>logout.php"
+        class="nav-link text-danger d-flex align-items-center sidebar-logout"
+        title="ออกจากระบบ"
+        aria-label="ออกจากระบบ">
         <i class="fas fa-sign-out-alt mr-3"></i>
-        <span>Logout</span>
+        <span>Logout<small>ออกจากระบบ</small></span>
     </a>
 </aside>
 

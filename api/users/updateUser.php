@@ -62,6 +62,21 @@ function saveUploadFile($inputName, $subpath)
     return $filename;
 }
 
+function getUploadFilePath($filename, $subpath)
+{
+    $safeFilename = basename(str_replace("\\", "/", (string) $filename));
+
+    if ($safeFilename === "") {
+        return null;
+    }
+
+    return dirname(__DIR__, 2)
+        . "/uploads/"
+        . trim($subpath, "/")
+        . "/"
+        . $safeFilename;
+}
+
 $userId = isset($_POST["userId"]) ? intval($_POST["userId"]) : 0;
 $userCode = isset($_POST["userCode"]) ? trim($_POST["userCode"]) : "";
 $nameEn = isset($_POST["nameEn"]) ? trim($_POST["nameEn"]) : "";
@@ -153,8 +168,8 @@ try {
         jsonResponseBadRequest("รหัสพนักงานหรือ Username ซ้ำกับข้อมูลเดิม");
     }
 
-    $newUserImage = saveUploadFile("userImage", "i");
-    $newUserSignature = saveUploadFile("userSignature", "s");
+    $newUserImage = saveUploadFile("userImage", "profile");
+    $newUserSignature = saveUploadFile("userSignature", "signature");
 
     $data = array(
         "UCode" => $userCode,
@@ -187,19 +202,31 @@ try {
         array($userId)
     );
 
-    $uploadDirectory = dirname(__DIR__, 2) . "/uploads";
-
     if ($newUserImage !== null && !empty($currentUser["UImage"]) && $currentUser["UImage"] !== $newUserImage) {
-        $oldImagePath = $uploadDirectory . "/" . $currentUser["UImage"];
-        if (is_file($oldImagePath)) {
+        $oldImagePath = getUploadFilePath($currentUser["UImage"], "profile");
+        if ($oldImagePath !== null && is_file($oldImagePath)) {
             @unlink($oldImagePath);
         }
     }
 
     if ($newUserSignature !== null && !empty($currentUser["USignature"]) && $currentUser["USignature"] !== $newUserSignature) {
-        $oldSignaturePath = $uploadDirectory . "/" . $currentUser["USignature"];
-        if (is_file($oldSignaturePath)) {
+        $oldSignaturePath = getUploadFilePath($currentUser["USignature"], "signature");
+        if ($oldSignaturePath !== null && is_file($oldSignaturePath)) {
             @unlink($oldSignaturePath);
+        }
+    }
+
+    if (isset($_SESSION["user"]["id"]) && intval($_SESSION["user"]["id"]) === $userId) {
+        $_SESSION["user"]["name_en"] = ($nameEn === "") ? null : $nameEn;
+        $_SESSION["user"]["name_th"] = ($nameTh === "") ? null : $nameTh;
+        $_SESSION["user"]["group"] = $userGroup;
+
+        if ($newUserImage !== null) {
+            $_SESSION["user"]["image"] = $newUserImage;
+        }
+
+        if ($newUserSignature !== null) {
+            $_SESSION["user"]["signature"] = $newUserSignature;
         }
     }
 

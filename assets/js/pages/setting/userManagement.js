@@ -390,7 +390,11 @@ function setServerPreview(type, filename, imageSelector, placeholderSelector, ov
         return;
     }
 
-    var uploadUrl = window.app.apiUrl("uploads/" + encodeURIComponent(filename));
+    var uploadDirectory = type === "image" ? "profile" : "signature";
+    var safeFilename = String(filename).replace(/\\/g, "/").split("/").pop();
+    var uploadUrl = window.app.apiUrl(
+        "uploads/" + uploadDirectory + "/" + encodeURIComponent(safeFilename)
+    );
 
     $(imageSelector)
         .attr("src", uploadUrl)
